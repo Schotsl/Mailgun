@@ -18,5 +18,5 @@ interface Message {
     subject: string;
     testing: boolean;
     tracking: boolean;
-  }
+  };
 }

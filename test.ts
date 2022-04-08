@@ -18,7 +18,7 @@ const mailgun = new Mailgun({ key, region, domain });
 
 Deno.test("check for status 200", async () => {
   const text = "This is a test email";
-  const from = "testing@mailgun.sjorsvanholst.nl"
+  const from = "testing@mailgun.sjorsvanholst.nl";
 
   const subject = "Testing Mailgun";
   const testing = true;

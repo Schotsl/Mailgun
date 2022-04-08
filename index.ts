@@ -14,15 +14,15 @@ export default class Mailgun {
         : `https://api.mailgun.net/v3/${config.domain}/messages`;
   }
 
-  async send(message: Message) {
+  send(message: Message) {
     const body = new FormData();
 
     if (message.testing) {
-      body.append('o:testmode', 'yes');
+      body.append("o:testmode", "yes");
     }
 
     if (message.tracking) {
-      body.append('o:tracking', 'yes');
+      body.append("o:tracking", "yes");
     }
 
     const keys = Object.keys(message);
