@@ -2,12 +2,15 @@
     <img src="logo.svg" alt="Mailgun logo" title="Mailgun" align="right" height="60" />
 </a>
 
-Mailgun for Deno
-======================
+# Mailgun for Deno
 
-This simple package allows you to send emails using the Mailgun API! If you find any bugs or have any feature requests you can create a pull request and I’ll see what I can do!
+This simple package allows you to send emails using the Mailgun API! If you find
+any bugs or have any feature requests you can create a pull request and I’ll see
+what I can do!
 
-The `Mailgun` class supports multiple regions and the `Message` object supports even more properties. Such as `cc`, `bcc`, `html, and much more! You should be able to explore all these properties using Typescript
+The `Mailgun` class supports multiple regions and the `Message` object supports
+even more properties. Such as `cc`, `bcc`, `html, and much more! You should be
+able to explore all these properties using Typescript
 
 # Example
 
@@ -27,7 +30,7 @@ await mailgun.send({
   to: "foo@bar.com",
   from: "bar@foo.com",
   text: "How are you doing my friend?",
-  subject: "Just checking up!"
+  subject: "Just checking up!",
 });
 ```
 
