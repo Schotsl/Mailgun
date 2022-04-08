@@ -8,13 +8,15 @@ interface Config {
 
 interface Message {
   // Will need this to index the object
-  [key: string]: string;
-
-  to: string;
-  cc: string;
-  bcc: string;
-  html: string;
-  text: string;
-  from: string;
-  subject: string;
+  [key: string]: {
+    to: string;
+    cc: string;
+    bcc: string;
+    html: string;
+    text: string;
+    from: string;
+    subject: string;
+    testing: boolean;
+    tracking: boolean;
+  }
 }

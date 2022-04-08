@@ -5,7 +5,9 @@ export default class Mailgun {
   private endpoint: string;
 
   constructor(config: Config) {
-    this.basic = btoa(`api:${config.key}`);
+    const base64 = btoa(`api:${config.key}`);
+
+    this.basic = `Basic ${base64}`;
     this.endpoint =
       typeof config.region !== "undefined" && config.region === "eu"
         ? `https://api.eu.mailgun.net/v3/${config.domain}/messages`
@@ -14,6 +16,15 @@ export default class Mailgun {
 
   async send(message: Message) {
     const body = new FormData();
+
+    if (message.testing) {
+      body.append('o:testmode', 'yes');
+    }
+
+    if (message.tracking) {
+      body.append('o:tracking', 'yes');
+    }
+
     const keys = Object.keys(message);
     const method = "POST";
     const headers = { Authorization: this.basic };
