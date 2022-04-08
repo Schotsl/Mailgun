@@ -1,0 +1,61 @@
+name: Updates
+
+on:
+  schedule:
+    - cron: "00 00 * * *"
+
+jobs:
+  update:
+    name: Updates
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Setup latest Deno version
+        uses: denolib/setup-deno@v2
+        with:
+          deno-version: v1.x
+
+      - name: Update dependencies
+        run: deno run -A https://deno.land/x/udd/main.ts **/*.ts
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v3
+        id: pr
+        with:
+          commit-message: "⬆️ Update dependencies"
+          title: Update dependencies
+          body: Dependencies updated by [udd](https://github.com/hayd/deno-udd).
+          branch: updates
+          author: GitHub <noreply@github.com>
+          delete-branch: true
+    
+      - name: Retrieve commit SHA
+        id: commit
+        run: |
+          echo "::set-output name=sha::$(git rev-parse HEAD)"
+
+      # - name: Set commit status with pending
+      #   uses: Sibz/github-status-action@v1
+      #   with: 
+      #     authToken: ${{ secrets.GITHUB_TOKEN }}
+      #     context: 'Basic tests'
+      #     state: 'pending'
+      #     sha: ${{ steps.commit.outputs.sha }}
+
+      # - name: Basic tests
+      #   id: test
+      #   continue-on-error: true
+      #   run: |
+      #     deno test --allow-read --allow-write
+
+      # - name: Set commit status with outcome
+      #   uses: Sibz/github-status-action@v1
+      #   with: 
+      #     authToken: ${{ secrets.GITHUB_TOKEN }}
+      #     context: 'Basic tests'
+      #     description: 'To run other CI actions close/reopen this PR'
+      #     state: ${{ steps.test.outcome }}
+      #     sha: ${{ steps.commit.outputs.sha }}

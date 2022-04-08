@@ -1,0 +1,57 @@
+name: Checks
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  quality:
+    name: Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Setup latest Deno version
+        uses: denolib/setup-deno@v2
+        with:
+          deno-version: v1.x
+
+      - name: Run Deno fmt
+        run: deno fmt --check **/*.ts
+
+      - name: Run Deno lint
+        run: deno lint **/*.ts
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Setup latest Deno version
+        uses: denolib/setup-deno@v2
+        with:
+          deno-version: v1.x
+
+      - name: Run Deno test
+        run: |
+          deno run -A index.ts &
+          sleep 10
+          deno test -A
+        env:
+          MYSQL_HOSTNAME: ${{ secrets.MYSQL_HOSTNAME }}
+          MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+          MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
+          
+          SMTP_HOSTNAME: ${{ secrets.SMTP_HOSTNAME }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_TARGET: ${{ secrets.SMTP_TARGET }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
