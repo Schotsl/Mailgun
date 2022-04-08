@@ -44,14 +44,7 @@ jobs:
           sleep 10
           deno test -A
         env:
-          MYSQL_HOSTNAME: ${{ secrets.MYSQL_HOSTNAME }}
-          MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
-          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-          MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
-          
-          SMTP_HOSTNAME: ${{ secrets.SMTP_HOSTNAME }}
-          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-          SMTP_TARGET: ${{ secrets.SMTP_TARGET }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          MAILGUN_TO: ${{ secrets.MAILGUN_TO }}
+          MAILGUN_KEY: ${{ secrets.MAILGUN_KEY }}
+          MAILGUN_REGION: ${{ secrets.MAILGUN_REGION }}
+          MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
