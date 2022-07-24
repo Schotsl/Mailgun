@@ -1,4 +1,4 @@
-<a href="https://uwuifier.com">
+<a href="https://github.com/Schotsl/Mailgun">
     <img src="logo.svg" alt="Mailgun logo" title="Mailgun" align="right" height="60" />
 </a>
 
@@ -16,12 +16,12 @@ able to explore all these properties using Typescript
 
 ```typescript
 // Import the Mailgun class
-import Mailgun from "./index.ts";
+import Mailgun from "https://deno.land/x/mailgun@v1.1.0/index.ts";
 
 // Create a instance using your Mailgun API key and domain
 const mailgun = new Mailgun({
-  key: "YOUR_API_KEY",
-  region: "eu",
+  key: "YOUR_KEY",
+  region: "YOUR_REGION",
   domain: "YOUR_DOMAIN",
 });
 
