@@ -29,7 +29,23 @@ export default class Mailgun {
     const method = "POST";
     const headers = { Authorization: this.basic };
 
-    keys.forEach((key: string) => body.append(key, message[key]));
+    keys.forEach((key: string) => {
+      const value = message[key];
+
+      if (value) {
+        let parsed = ``;
+
+        if (typeof value === "boolean") {
+          parsed = value.toString();
+        } else if (Array.isArray(value)) {
+          parsed = value.join(",");
+        } else {
+          parsed = value;
+        }
+
+        body.append(key, parsed);
+      }
+    });
 
     return fetch(this.endpoint, { method, headers, body });
   }
