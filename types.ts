@@ -1,22 +1,23 @@
-type region = "us" | "eu";
+export type region = "us" | "eu";
 
-interface Config {
+export interface Key {
+  [key: string]: string | boolean | string[] | undefined;
+}
+
+export interface Config {
   key: string;
   domain: string;
   region?: region;
 }
 
-interface Message {
-  // Will need this to index the object
-  [key: string]: {
-    to: string;
-    cc: string;
-    bcc: string;
-    html: string;
-    text: string;
-    from: string;
-    subject: string;
-    testing: boolean;
-    tracking: boolean;
-  };
+export interface Message extends Key {
+  to: string[] | string;
+  cc?: string[] | string;
+  bcc?: string[] | string;
+  from: string;
+  html?: string;
+  text?: string;
+  subject: string;
+  testing?: boolean;
+  tracking?: boolean;
 }
