@@ -1,4 +1,4 @@
-name: Development update
+name: Main update
 
 on:
   schedule:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v3
         with:
-          ref: development
+          ref: main
 
       - name: Setup latest Deno version
         uses: denoland/setup-deno@v1

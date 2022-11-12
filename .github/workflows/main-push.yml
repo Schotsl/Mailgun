@@ -1,9 +1,9 @@
-name: Development push
+name: Main push
 
 on:
   push:
     branches:
-      - development
+      - main
 
 jobs:
   quality:
