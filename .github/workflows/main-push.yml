@@ -39,7 +39,7 @@ jobs:
           deno-version: v1.x
 
       - name: Run Deno test
-        run: deno test --allow-env=MAILGUN_TO,MAILGUN_KEY,MAILGUN_DOMAIN,MAILGUN_REGION --allow-net=api.mailgun.net,api.eu.mailgun.net
+        run: deno test --allow-env=MAILGUN_TO,MAILGUN_KEY,MAILGUN_DOMAIN,MAILGUN_REGION,DENO_DEPLOYMENT_ID --allow-net=api.mailgun.net,api.eu.mailgun.net
         env:
           MAILGUN_TO: ${{ secrets.MAILGUN_TO }}
           MAILGUN_KEY: ${{ secrets.MAILGUN_KEY }}
