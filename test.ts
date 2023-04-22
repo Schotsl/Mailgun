@@ -1,4 +1,4 @@
-import { initializeEnv } from "https://raw.githubusercontent.com/Schotsl/Uberdeno//helper.ts";
+import { initializeEnv } from "https://raw.githubusercontent.com/Schotsl/Uberdeno/v1.0.1/helper.ts";
 import { region } from "./types.ts";
 
 import Mailgun from "./index.ts";
