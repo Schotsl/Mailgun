@@ -15,38 +15,40 @@ export default class Mailgun {
   }
 
   send(message: Message) {
-    const body = new FormData();
+    const form = new FormData();
 
-    if (message.testing) {
-      body.append("o:testmode", "yes");
+    for (const property in message) {
+      if (Object.prototype.hasOwnProperty.call(message, property)) {
+        const key = property as keyof Message;
+        const value = message[key];
+
+        this.mailgunStringify(key, value, form);
+      }
     }
 
-    if (message.tracking) {
-      body.append("o:tracking", "yes");
-    }
-
-    const keys = Object.keys(message);
     const method = "POST";
     const headers = { Authorization: this.basic };
 
-    keys.forEach((key: string) => {
-      const value = message[key];
+    return fetch(this.endpoint, { method, headers, body: form });
+  }
 
-      if (value) {
-        let parsed = ``;
+  private mailgunStringify(
+    key: keyof Message,
+    value: Message[keyof Message],
+    form: FormData
+  ): void {
+    if (value !== undefined) {
+      let parsedValue = ``;
 
-        if (typeof value === "boolean") {
-          parsed = value.toString();
-        } else if (Array.isArray(value)) {
-          parsed = value.join(",");
-        } else {
-          parsed = value;
-        }
-
-        body.append(key, parsed);
+      if (typeof value === "boolean") {
+        parsedValue = value.toString();
+      } else if (Array.isArray(value)) {
+        parsedValue = value.join(",");
+      } else {
+        parsedValue = value as string;
       }
-    });
 
-    return fetch(this.endpoint, { method, headers, body });
+      form.append(key, parsedValue);
+    }
   }
 }
