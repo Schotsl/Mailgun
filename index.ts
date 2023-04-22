@@ -17,6 +17,13 @@ export default class Mailgun {
   send(message: Message) {
     const form = new FormData();
 
+    // For package simplicity we'll parse the reply property into the correct header
+    if (message["reply"]) {
+      message["h:Reply-To"] = message.reply;
+
+      delete message["reply"];
+    }
+
     for (const property in message) {
       if (Object.prototype.hasOwnProperty.call(message, property)) {
         const key = property as keyof Message;
@@ -35,7 +42,7 @@ export default class Mailgun {
   private mailgunStringify(
     key: keyof Message,
     value: Message[keyof Message],
-    form: FormData
+    form: FormData,
   ): void {
     if (value !== undefined) {
       let parsedValue = ``;
