@@ -30,6 +30,7 @@ await mailgun.send({
   to: "foo@bar.com",
   from: "bar@foo.com",
   text: "How are you doing my friend?",
+  reply: "replies@foo.com"
   subject: "Just checking up!",
 });
 ```
