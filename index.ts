@@ -42,7 +42,7 @@ export default class Mailgun {
   private mailgunStringify(
     key: keyof Message,
     value: Message[keyof Message],
-    form: FormData
+    form: FormData,
   ): void {
     // Return early if the value is undefined
     if (value === undefined) {
