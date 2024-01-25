@@ -16,7 +16,7 @@ able to explore all these properties using Typescript
 
 ```typescript
 // Import the Mailgun class
-import Mailgun from "https://deno.land/x/mailgun@v1.1.0/index.ts";
+import Mailgun from "https://deno.land/x/mailgun@v1.2.2/index.ts";
 
 // Create a instance using your Mailgun API key and domain
 const mailgun = new Mailgun({
