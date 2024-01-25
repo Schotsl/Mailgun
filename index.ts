@@ -42,20 +42,44 @@ export default class Mailgun {
   private mailgunStringify(
     key: keyof Message,
     value: Message[keyof Message],
-    form: FormData,
+    form: FormData
   ): void {
-    if (value !== undefined) {
-      let parsedValue = ``;
+    // Return early if the value is undefined
+    if (value === undefined) {
+      return;
+    }
 
-      if (typeof value === "boolean") {
-        parsedValue = value.toString();
-      } else if (Array.isArray(value)) {
-        parsedValue = value.join(",");
-      } else {
-        parsedValue = value as string;
-      }
+    // Handle single file
+    if (value instanceof File) {
+      form.append(key, value);
+
+      return;
+    }
+
+    // Handle array of files
+    const isArray = Array.isArray(value);
+    const isFiles = isArray && value.every((item) => item instanceof File);
+
+    if (isFiles) {
+      value.forEach((file, index) => {
+        form.append(`${key}[${index}]`, file);
+      });
+
+      return;
+    }
+
+    // Handle array of strings
+    if (Array.isArray(value)) {
+      const parsedValue = value.join(",");
 
       form.append(key, parsedValue);
+
+      return;
     }
+
+    // For all other types (boolean, string), convert to string and append
+    const valueStringified = value.toString();
+
+    form.append(key, valueStringified);
   }
 }
