@@ -16,7 +16,7 @@ The `Message` object also supports a variety of properties, such as `cc`, `bcc`,
 
 ```typescript
 // Import the Mailgun class
-import Mailgun from "https://deno.land/x/mailgun@v1.2.2/index.ts";
+import Mailgun from "https://deno.land/x/mailgun@v1.2.3/index.ts";
 
 // Create an instance using your Mailgun API key, region, and domain
 const mailgun = new Mailgun({
