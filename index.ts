@@ -1,4 +1,4 @@
-import { Config, Message } from "./types.ts";
+import type { Config, Message } from "./types.ts";
 
 export default class Mailgun {
   private basic: string;
@@ -14,7 +14,7 @@ export default class Mailgun {
         : `https://api.mailgun.net/v3/${config.domain}/messages`;
   }
 
-  send(message: Message) {
+  send(message: Message): Promise<Response> {
     const form = new FormData();
 
     // For package simplicity we'll parse the reply property into the correct header

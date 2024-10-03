@@ -1,0 +1,20 @@
+{
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "jsr:@std/dotenv": "jsr:@std/dotenv@0.225.2",
+      "jsr:@std/dotenv@^0.225.2": "jsr:@std/dotenv@0.225.2"
+    },
+    "jsr": {
+      "@std/dotenv@0.225.2": {
+        "integrity": "e2025dce4de6c7bca21dece8baddd4262b09d5187217e231b033e088e0c4dd23"
+      }
+    }
+  },
+  "remote": {},
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/dotenv@^0.225.2"
+    ]
+  }
+}

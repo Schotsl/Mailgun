@@ -1,0 +1,47 @@
+name: Checks
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  quality:
+    name: Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Setup latest Deno version
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: vx.x.x
+
+      - name: Check formatting with Deno
+        run: deno task format:check
+
+      - name: Check linting with Deno
+        run: deno task lint
+
+  # test:
+  #   name: Test
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Checkout sources
+  #       uses: actions/checkout@v4
+
+  #     - name: Setup latest Deno version
+  #       uses: denoland/setup-deno@v1
+  #       with:
+  #         deno-version: vx.x.x
+
+  #     - name: Run Deno test
+  #       run: deno task test
+  #       env:
+  #         MAILGUN_TO: ${{ secrets.MAILGUN_TO }}
+  #         MAILGUN_KEY: ${{ secrets.MAILGUN_KEY }}
+  #         MAILGUN_REGION: ${{ secrets.MAILGUN_REGION }}
+  #         MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}

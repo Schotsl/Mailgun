@@ -1,0 +1,14 @@
+{
+  "name": "@schotsl/mailgun",
+  "version": "1.3.0",
+  "exports": "./index.ts",
+  "tasks": {
+    "lint": "deno lint",
+    "test": "deno test --allow-read --allow-env test.ts",
+    "format": "deno fmt",
+    "format:check": "deno fmt --check"
+  },
+  "imports": {
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.2"
+  }
+}

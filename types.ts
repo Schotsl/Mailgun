@@ -1,9 +1,9 @@
-export type region = "us" | "eu";
+export type Region = "us" | "eu";
 
 export interface Config {
   key: string;
   domain: string;
-  region?: region;
+  region?: Region;
 }
 
 export interface Message {

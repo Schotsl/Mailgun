@@ -1,5 +1,5 @@
-import { initializeEnv } from "https://raw.githubusercontent.com/Schotsl/Uberdeno/v1.0.1/helper.ts";
-import { region } from "./types.ts";
+import { initializeEnv } from "./helper.ts";
+import type { Region } from "./types.ts";
 
 import Mailgun from "./index.ts";
 
@@ -13,7 +13,7 @@ initializeEnv([
 const to = Deno.env.get("MAILGUN_TO")!;
 const key = Deno.env.get("MAILGUN_KEY")!;
 const domain = Deno.env.get("MAILGUN_DOMAIN")!;
-const region = Deno.env.get("MAILGUN_REGION")! as region;
+const region = Deno.env.get("MAILGUN_REGION")! as Region;
 
 const mailgun = new Mailgun({ key, region, domain });
 
