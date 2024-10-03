@@ -38,13 +38,13 @@ jobs:
         with:
           deno-version: vx.x.x
 
-      # - name: Run Deno test
-      #   run: deno task test
-      #   env:
-      #     MAILGUN_TO: ${{ secrets.MAILGUN_TO }}
-      #     MAILGUN_KEY: ${{ secrets.MAILGUN_KEY }}
-      #     MAILGUN_REGION: ${{ secrets.MAILGUN_REGION }}
-      #     MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+      - name: Run Deno test
+        run: deno task test
+        env:
+          MAILGUN_TO: ${{ secrets.MAILGUN_TO }}
+          MAILGUN_KEY: ${{ secrets.MAILGUN_KEY }}
+          MAILGUN_REGION: ${{ secrets.MAILGUN_REGION }}
+          MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
 
   publish-jsr:
     name: Publish JSR
